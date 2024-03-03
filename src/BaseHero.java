@@ -37,9 +37,11 @@
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
-abstract class BaseHero {
+abstract class BaseHero implements Step {
     private String name;
     private int level;
     private int health;
@@ -74,8 +76,17 @@ abstract class BaseHero {
     }
 
     public String getFullInfo() {
-        return String.format("\nName: %s\nType: %s\nLevel: %d\nHealth: %d\nMax Health: %d\nStrength: %d\nMind: %d\nReaction: %d\nDamage: %d\n",
-                this.name, this.getClass().getSimpleName(), this.level, this.health, this.maxHealth, this.strength, this.mind, this.reaction, this.damage);
+        return String.format("\nName: %s\nType: %s\nLevel: %d\nHealth: %d\nMax Health: %d\nStrength: %d\nMind: %d\nReaction: %d\nDamage: %d\nHero Position: %d, %d\n",
+                this.name, this.getClass().getSimpleName(), this.level, this.health, this.maxHealth, this.strength, this.mind, this.reaction, this.damage, this.heroPosition.getX(), this.heroPosition.getY());
+    }
+
+    public boolean isDead(BaseHero target) {
+        if (target.health <= 0) {
+            System.out.println(target.name + " is dead");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public void getDamage(int damage) {
@@ -92,7 +103,11 @@ abstract class BaseHero {
     }
 
     public void heal(int addHealth) {
-        this.health = Math.min(this.health + addHealth, this.maxHealth);
+        if (this.health + addHealth > this.maxHealth) {
+            this.health = this.maxHealth;
+        } else {
+            this.health = this.health + addHealth;
+        }
     }
 
     public BaseHero getNearestEnemy(ArrayList<BaseHero> enemyTeam) {
@@ -106,5 +121,9 @@ abstract class BaseHero {
         }
         double minDistance = target.firstKey();
         return target.get(minDistance);
+    }
+
+    public int getReaction() {
+        return reaction;
     }
 }
