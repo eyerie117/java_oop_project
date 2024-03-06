@@ -20,10 +20,16 @@
 Есль всё да, то найти ближайшего противника и выстрелить по немы и, соответственно потратить одну стрелу. Реализовать весь функционал лучников в методе step().
 Добавить в абстрактный класс int поле инициатива. В классах наследников инициализировать это поле. Крестьянин = 0, маги=1, пехота=2, лучники=3.
 В мэйне сделать так, чтобы сначала делали ход персонажи с наивысшей инициативой из обеих комманд а с наименьшей в конце.
+
+Урок 4. Задание 4.
+Реализовать метод step() пехоты. Первое проверяем живы ли мы, потом ищем ближайшего противника.
+Если противник в соседней клетке, наносим повреждение. Иначе двигаемся в сторну противника.
+Алгоритм движения, если dX>dY двигаемся по x иначе по y. dX и dY (разница наших координат и ближайшего противника) знаковые, от знака зависит направление.
  */
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -58,25 +64,25 @@ public class Main {
 
             switch (new Random().nextInt(7)) {
                 case 0:
-                    teamLeft.add(new Peasant(i, 0, getName(), 1, 100, 100, 10, 25, 0, 5, 15));
+                    teamLeft.add(new Peasant(i, 9, getName(), 1, 100, 100, 10, 25, 0, 5, 15));
                     break;
                 case 1:
-                    teamLeft.add(new Robber(i, 0, getName(), 1, 120, 120, 25, 40, 1, 15, 10, 25));
+                    teamLeft.add(new Robber(i, 9, getName(), 1, 120, 120, 25, 40, 1, 15, 10, 25));
                     break;
                 case 2:
-                    teamLeft.add(new Sniper(i, 0, getName(), 1, 150, 150, 40, 75, 3, 40, 70, 100, 5));
+                    teamLeft.add(new Sniper(i, 9, getName(), 1, 150, 150, 40, 75, 3, 40, 70, 100, 5));
                     break;
                 case 3:
-                    teamLeft.add(new Wizard(i, 0, getName(), 1, 250, 250, 80, 120, 2, 80, 150, 60));
+                    teamLeft.add(new Wizard(i, 9, getName(), 1, 250, 250, 80, 120, 2, 80, 150, 60));
                     break;
                 case 4:
-                    teamLeft.add(new Spearman(i, 0, getName(), 1, 170, 170, 50, 50, 1, 40, 40, 60));
+                    teamLeft.add(new Spearman(i, 9, getName(), 1, 170, 170, 50, 50, 1, 40, 40, 60));
                     break;
                 case 5:
-                    teamLeft.add(new Crossbowman(i, 0, getName(), 1, 140, 140, 30, 60, 3, 30, 50, 30, 10));
+                    teamLeft.add(new Crossbowman(i, 9, getName(), 1, 140, 140, 30, 60, 3, 30, 50, 30, 10));
                     break;
                 case 6:
-                    teamLeft.add(new Monk(i, 0, getName(), 1, 200, 200, 50, 100, 2, 35, 25, 70));
+                    teamLeft.add(new Monk(i, 9, getName(), 1, 200, 200, 50, 100, 2, 35, 25, 70));
                     break;
             }
         }
@@ -89,11 +95,21 @@ public class Main {
         ArrayList<BaseHero> allHeroes = new ArrayList<>();
         allHeroes.addAll(teamLeft);
         allHeroes.addAll(teamRight);
-
         allHeroes.sort((o1, o2) -> o2.getReaction() - o1.getReaction());
 
         allHeroes.forEach(System.out::println);
+        System.out.println("-".repeat(32));
 
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            scanner.nextLine();
+            for (BaseHero allHero : allHeroes) {
+                if (teamRight.contains(allHero)) allHero.step(teamLeft, teamRight);
+                else allHero.step(teamRight, teamLeft);
+            }
+            allHeroes.forEach(System.out::println);
+            System.out.println("-".repeat(32));
+        }
     }
 
     private static String getName() {

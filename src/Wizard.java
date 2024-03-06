@@ -5,7 +5,7 @@ public class Wizard extends BaseHero {
     private int intuition;
 
     public Wizard(int x, int y, String name, int level, int health, int maxHealth, int strength, int mind, int reaction, int damage, int mana, int intuition) {
-        super(x, y, name, 1, health, maxHealth, strength, mind, 2, damage);
+        super(x, y, name, level, health, maxHealth, strength, mind, reaction, damage);
         this.mana = mana;
         this.intuition = intuition;
     }
@@ -20,7 +20,7 @@ public class Wizard extends BaseHero {
     }
 
     @Override
-    public void step(ArrayList<BaseHero> enemyTeam) {
+    public void step(ArrayList<BaseHero> enemyTeam, ArrayList<BaseHero> friendTeam) {
 
     }
 }

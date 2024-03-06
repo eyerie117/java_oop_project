@@ -21,8 +21,8 @@ public class Sniper extends BaseHero {
     }
 
     @Override
-    public void step(ArrayList<BaseHero> enemyTeam) {
-        if (isDead(Sniper.this)) {
+    public void step(ArrayList<BaseHero> enemyTeam, ArrayList<BaseHero> friendTeam) {
+        if (!isDead(Sniper.this)) {
             if (Sniper.this.arrows > 0) {
                 attack(getNearestEnemy(enemyTeam));
                 this.arrows -= 1;

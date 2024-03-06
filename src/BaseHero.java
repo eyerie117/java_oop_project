@@ -37,8 +37,6 @@
  */
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.TreeMap;
 
 abstract class BaseHero implements Step {
@@ -71,7 +69,7 @@ abstract class BaseHero implements Step {
 
     @Override
     public String toString() {
-        return String.format("Name: %s\nType: %s\nPosition: %d, %d\n",
+        return String.format("Name: %s\tType: %s\tPosition: %d, %d\t",
                 this.name, this.getClass().getSimpleName(), this.heroPosition.getX(), this.heroPosition.getY());
     }
 
@@ -83,9 +81,9 @@ abstract class BaseHero implements Step {
     public boolean isDead(BaseHero target) {
         if (target.health <= 0) {
             System.out.println(target.name + " is dead");
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 

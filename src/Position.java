@@ -17,4 +17,12 @@ public class Position {
     public double getDistance(Position position) {
         return Math.sqrt(Math.pow(x - position.x, 2) + Math.pow(y - position.y, 2));
     }
+
+    public Position getDifference(Position target) {
+        return new Position(x - target.x, y - target.y);
+    }
+
+    public boolean equals (Position target) {
+        return x == target.x && y == target.y;
+    }
 }

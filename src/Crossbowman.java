@@ -22,8 +22,8 @@ public class Crossbowman extends BaseHero {
     }
 
     @Override
-    public void step(ArrayList<BaseHero> enemyTeam) {
-        if (isDead(Crossbowman.this)) {
+    public void step(ArrayList<BaseHero> enemyTeam, ArrayList<BaseHero> friendTeam) {
+        if (!isDead(Crossbowman.this)) {
             if (Crossbowman.this.arrows > 0) {
                 attack(getNearestEnemy(enemyTeam));
                 this.arrows -= 1;
