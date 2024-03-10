@@ -1,3 +1,5 @@
+package Heroes;
+
 import java.util.ArrayList;
 
 public class Robber extends BaseHero {
@@ -40,5 +42,9 @@ public class Robber extends BaseHero {
             }
             this.heroPosition = newPosition;
         }
+    }
+
+    public String getInfo() {
+        return "Разбойник";
     }
 }

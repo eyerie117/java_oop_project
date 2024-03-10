@@ -1,3 +1,5 @@
+package Heroes;
+
 import java.util.ArrayList;
 
 public class Sniper extends BaseHero {
@@ -15,6 +17,12 @@ public class Sniper extends BaseHero {
     public Sniper(int x, int y, String name) {
         super(x, y, name);
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s ➶: %d", super.toString(), this.arrows);
+    }
+
     @Override
     public String getFullInfo() {
         return String.format("%sAccuracy: %d\nCamouflage: %d\nArrows: %d\n",super.getFullInfo(), this.accuracy, this.camouflage, this.arrows);
@@ -30,5 +38,9 @@ public class Sniper extends BaseHero {
                 System.out.println("Give me more arrows!");
             }
         }
+    }
+
+    public String getInfo() {
+        return "Снайпер";
     }
 }

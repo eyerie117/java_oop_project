@@ -1,4 +1,4 @@
-/*
+package Heroes;/*
 Абстрактный класс "Базовый персонаж":
 1. Имя персонажа
 2. Уровень персонажа
@@ -39,7 +39,7 @@
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-abstract class BaseHero implements Step {
+abstract public class BaseHero implements Step {
     private String name;
     private int level;
     private int health;
@@ -69,30 +69,25 @@ abstract class BaseHero implements Step {
 
     @Override
     public String toString() {
-        return String.format("Name: %s\tType: %s\tPosition: %d, %d\t",
-                this.name, this.getClass().getSimpleName(), this.heroPosition.getX(), this.heroPosition.getY());
+        return String.format("Name: %s ♥: %d ⚔: %d", this.name, this.health, this.damage);
+    }
+
+    public String getInfo() {
+        return "";
     }
 
     public String getFullInfo() {
-        return String.format("\nName: %s\nType: %s\nLevel: %d\nHealth: %d\nMax Health: %d\nStrength: %d\nMind: %d\nReaction: %d\nDamage: %d\nHero Position: %d, %d\n",
+        return String.format("\nName: %s\nType: %s\nLevel: %d\nHealth: %d\nMax Health: %d\nStrength: %d\nMind: %d\nReaction: %d\nDamage: %d\nHero Heroes.Wizard.Position: %d, %d\n",
                 this.name, this.getClass().getSimpleName(), this.level, this.health, this.maxHealth, this.strength, this.mind, this.reaction, this.damage, this.heroPosition.getX(), this.heroPosition.getY());
     }
 
     public boolean isDead(BaseHero target) {
-        if (target.health <= 0) {
-            System.out.println(target.name + " is dead");
-            return true;
-        } else {
-            return false;
-        }
+        return target.health <= 0;
     }
 
     public void getDamage(int damage) {
-        if (this.health - damage > 0) {
-            this.health -= damage;
-        } else {
-            System.out.println(this.name + " die!");
-        }
+        if (this.health - damage > 0) this.health -= damage;
+        else this.health = 0;
     }
 
     public void attack(BaseHero target) {
@@ -121,7 +116,19 @@ abstract class BaseHero implements Step {
         return target.get(minDistance);
     }
 
+    public int getHealth() {
+        return health;
+    }
+
     public int getReaction() {
         return reaction;
+    }
+
+    public Position getHeroPosition() {
+        return heroPosition;
+    }
+
+    public static interface Step {
+        void step(ArrayList<BaseHero> enemyTeam, ArrayList<BaseHero> friendTeam);
     }
 }

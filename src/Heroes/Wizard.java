@@ -1,3 +1,5 @@
+package Heroes;
+
 import java.util.ArrayList;
 
 public class Wizard extends BaseHero {
@@ -22,5 +24,9 @@ public class Wizard extends BaseHero {
     @Override
     public void step(ArrayList<BaseHero> enemyTeam, ArrayList<BaseHero> friendTeam) {
 
+    }
+
+    public String getInfo() {
+        return "Волшебник";
     }
 }

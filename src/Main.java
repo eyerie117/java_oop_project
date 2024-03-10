@@ -25,100 +25,110 @@
 Реализовать метод step() пехоты. Первое проверяем живы ли мы, потом ищем ближайшего противника.
 Если противник в соседней клетке, наносим повреждение. Иначе двигаемся в сторну противника.
 Алгоритм движения, если dX>dY двигаемся по x иначе по y. dX и dY (разница наших координат и ближайшего противника) знаковые, от знака зависит направление.
+
+Урок 5. Задание 5.
+Добавить в проект классы View и AnsiColors. Доработать проект так, чтобы выводилось состаяние в консоль.
+Если в одной из комманд погибли все, приложение закрывается с поздравлением победившей команды.
  */
+
+import Heroes.*;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+    public static ArrayList<BaseHero> teamRight = new ArrayList<>();
+    public static ArrayList<BaseHero> teamLeft = new ArrayList<>();
+    public static ArrayList<BaseHero> allHeroes = new ArrayList<>();
     public static void main(String[] args) {
 
-        ArrayList<BaseHero> teamRight = new ArrayList<>();
-        ArrayList<BaseHero> teamLeft = new ArrayList<>();
-
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i < 11; i++) {
             switch (new Random().nextInt(7)) {
                 case 0:
-                    teamRight.add(new Peasant(i, 0, getName(), 1, 100, 100, 10, 25, 0, 5, 15));
+                    teamRight.add(new Peasant(i, 1, getName(), 1, 100, 100, 10, 25, 0, 5, 15));
                     break;
                 case 1:
-                    teamRight.add(new Robber(i, 0, getName(), 1, 120, 120, 25, 40, 1, 15, 10, 25));
+                    teamRight.add(new Robber(i, 1, getName(), 1, 120, 120, 25, 40, 1, 15, 10, 25));
                     break;
                 case 2:
-                    teamRight.add(new Sniper(i, 0, getName(), 1, 150, 150, 40, 75, 3, 40, 70, 100, 5));
+                    teamRight.add(new Sniper(i, 1, getName(), 1, 150, 150, 40, 75, 3, 40, 70, 100, 10));
                     break;
                 case 3:
-                    teamRight.add(new Wizard(i, 0, getName(), 1, 250, 250, 80, 120, 2, 80, 150, 60));
+                    teamRight.add(new Wizard(i, 1, getName(), 1, 250, 250, 80, 120, 2, 80, 150, 60));
                     break;
                 case 4:
-                    teamRight.add(new Spearman(i, 0, getName(), 1, 170, 170, 50, 50, 1, 40, 40, 60));
+                    teamRight.add(new Spearman(i, 1, getName(), 1, 170, 170, 50, 50, 1, 40, 40, 60));
                     break;
                 case 5:
-                    teamRight.add(new Crossbowman(i, 0, getName(), 1, 140, 140, 30, 60, 3, 30, 50, 30, 10));
+                    teamRight.add(new Crossbowman(i, 1, getName(), 1, 140, 140, 30, 60, 3, 30, 50, 30, 15));
                     break;
                 case 6:
-                    teamRight.add(new Monk(i, 0, getName(), 1, 200, 200, 50, 100, 2, 35, 25, 70));
+                    teamRight.add(new Monk(i, 1, getName(), 1, 200, 200, 50, 100, 2, 35, 25, 70));
                     break;
             }
 
             switch (new Random().nextInt(7)) {
                 case 0:
-                    teamLeft.add(new Peasant(i, 9, getName(), 1, 100, 100, 10, 25, 0, 5, 15));
+                    teamLeft.add(new Peasant(i, 10, getName(), 1, 100, 100, 10, 25, 0, 5, 15));
                     break;
                 case 1:
-                    teamLeft.add(new Robber(i, 9, getName(), 1, 120, 120, 25, 40, 1, 15, 10, 25));
+                    teamLeft.add(new Robber(i, 10, getName(), 1, 120, 120, 25, 40, 1, 15, 10, 25));
                     break;
                 case 2:
-                    teamLeft.add(new Sniper(i, 9, getName(), 1, 150, 150, 40, 75, 3, 40, 70, 100, 5));
+                    teamLeft.add(new Sniper(i, 10, getName(), 1, 150, 150, 40, 75, 3, 40, 70, 100, 10));
                     break;
                 case 3:
-                    teamLeft.add(new Wizard(i, 9, getName(), 1, 250, 250, 80, 120, 2, 80, 150, 60));
+                    teamLeft.add(new Wizard(i, 10, getName(), 1, 250, 250, 80, 120, 2, 80, 150, 60));
                     break;
                 case 4:
-                    teamLeft.add(new Spearman(i, 9, getName(), 1, 170, 170, 50, 50, 1, 40, 40, 60));
+                    teamLeft.add(new Spearman(i, 10, getName(), 1, 170, 170, 50, 50, 1, 40, 40, 60));
                     break;
                 case 5:
-                    teamLeft.add(new Crossbowman(i, 9, getName(), 1, 140, 140, 30, 60, 3, 30, 50, 30, 10));
+                    teamLeft.add(new Crossbowman(i, 10, getName(), 1, 140, 140, 30, 60, 3, 30, 50, 30, 15));
                     break;
                 case 6:
-                    teamLeft.add(new Monk(i, 9, getName(), 1, 200, 200, 50, 100, 2, 35, 25, 70));
+                    teamLeft.add(new Monk(i, 10, getName(), 1, 200, 200, 50, 100, 2, 35, 25, 70));
                     break;
             }
         }
 
-        //printTeam(teamRight);
-        //printTeam(teamLeft);
-
-        //System.out.println("Your nearest enemy is:\n" + teamRight.get(5).getNearestEnemy(teamLeft));
-
-        ArrayList<BaseHero> allHeroes = new ArrayList<>();
         allHeroes.addAll(teamLeft);
         allHeroes.addAll(teamRight);
         allHeroes.sort((o1, o2) -> o2.getReaction() - o1.getReaction());
 
-        allHeroes.forEach(System.out::println);
-        System.out.println("-".repeat(32));
-
         Scanner scanner = new Scanner(System.in);
+        boolean flag = true;
         while (true) {
+            View.view();
             scanner.nextLine();
+            int teamRightHealth = 0;
+            int teamLeftHealth = 0;
+            for (BaseHero baseHero : teamRight) {
+                teamRightHealth += baseHero.getHealth();
+            }
+            for (BaseHero baseHero : teamLeft) {
+                teamLeftHealth += baseHero.getHealth();
+            }
+            if (teamRightHealth == 0) {
+                System.out.println(teamLeft + " одержали победу!");
+                flag = false;
+                break;
+            }
+            if (teamLeftHealth == 0) {
+                System.out.println(teamRight + " одержали победу!");
+                flag = false;
+                break;
+            }
             for (BaseHero allHero : allHeroes) {
                 if (teamRight.contains(allHero)) allHero.step(teamLeft, teamRight);
                 else allHero.step(teamRight, teamLeft);
             }
-            allHeroes.forEach(System.out::println);
-            System.out.println("-".repeat(32));
+
         }
     }
 
     private static String getName() {
         return String.valueOf(Names.values()[new Random().nextInt(Names.values().length - 1)]);
-    }
-
-    public static void printTeam(ArrayList<BaseHero> team) {
-        for (int i = 0; i < team.size(); i++) {
-            System.out.println((i + 1) + ".\n" + team.get(i).getFullInfo());
-        }
     }
 }

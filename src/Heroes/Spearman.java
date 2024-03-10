@@ -1,6 +1,8 @@
+package Heroes;
+
 import java.util.ArrayList;
 
-public class Spearman extends BaseHero{
+public class Spearman extends BaseHero {
     private int armor;
     private int criticalHit;
 
@@ -40,5 +42,9 @@ public class Spearman extends BaseHero{
             }
             this.heroPosition = newPosition;
         }
+    }
+
+    public String getInfo() {
+        return "Копейщик";
     }
 }

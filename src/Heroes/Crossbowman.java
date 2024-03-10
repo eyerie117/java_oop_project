@@ -1,3 +1,5 @@
+package Heroes;
+
 import java.util.ArrayList;
 
 public class Crossbowman extends BaseHero {
@@ -17,6 +19,11 @@ public class Crossbowman extends BaseHero {
     }
 
     @Override
+    public String toString() {
+        return String.format("%s ➶: %d", super.toString(), this.arrows);
+    }
+
+    @Override
     public String getFullInfo() {
         return String.format("%sAccuracy: %d\nSpeed: %d\nArrows: %d\n",super.getFullInfo(), this.accuracy, this.speed, this.arrows);
     }
@@ -27,9 +34,11 @@ public class Crossbowman extends BaseHero {
             if (Crossbowman.this.arrows > 0) {
                 attack(getNearestEnemy(enemyTeam));
                 this.arrows -= 1;
-            } else {
-                System.out.println("Give me more arrows!");
             }
         }
+    }
+
+    public String getInfo() {
+        return "Арбалетчик";
     }
 }
