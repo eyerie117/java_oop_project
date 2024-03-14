@@ -33,9 +33,13 @@ public class Sniper extends BaseHero {
         if (!isDead(Sniper.this)) {
             if (Sniper.this.arrows > 0) {
                 attack(getNearestEnemy(enemyTeam));
+                for (BaseHero baseHero : friendTeam) {
+                    if (baseHero.getInfo().equals("Фермер") && !((Peasant)baseHero).busy) {
+                        ((Peasant)baseHero).busy = true;
+                        return;
+                    }
+                }
                 this.arrows -= 1;
-            } else {
-                System.out.println("Give me more arrows!");
             }
         }
     }

@@ -33,6 +33,12 @@ public class Crossbowman extends BaseHero {
         if (!isDead(Crossbowman.this)) {
             if (Crossbowman.this.arrows > 0) {
                 attack(getNearestEnemy(enemyTeam));
+                for (BaseHero baseHero : friendTeam) {
+                    if (baseHero.getInfo().equals("Фермер") && !((Peasant)baseHero).busy) {
+                        ((Peasant)baseHero).busy = true;
+                        return;
+                    }
+                }
                 this.arrows -= 1;
             }
         }

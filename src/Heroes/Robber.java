@@ -25,7 +25,7 @@ public class Robber extends BaseHero {
     public void step(ArrayList<BaseHero> enemyTeam, ArrayList<BaseHero> friendTeam) {
         if (!isDead(Robber.this)) {
             BaseHero enemy = this.getNearestEnemy(enemyTeam);
-            if (heroPosition.getDistance(enemy.heroPosition) < 2) {
+            if (heroPosition.getDistance(enemy.heroPosition) < 2 && enemy.getHealth() > 0) {
                 attack(enemy);
                 return;
             }

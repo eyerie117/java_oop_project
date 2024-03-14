@@ -95,12 +95,8 @@ abstract public class BaseHero implements Step {
         target.getDamage(damage);
     }
 
-    public void heal(int addHealth) {
-        if (this.health + addHealth > this.maxHealth) {
-            this.health = this.maxHealth;
-        } else {
-            this.health = this.health + addHealth;
-        }
+    public void heal(BaseHero target, int healing) {
+        target.health = Math.min(target.health + healing, target.maxHealth);
     }
 
     public BaseHero getNearestEnemy(ArrayList<BaseHero> enemyTeam) {
@@ -110,7 +106,7 @@ abstract public class BaseHero implements Step {
         for (BaseHero baseHero : enemyTeam) {
             Position enemyPosition = new Position(baseHero.heroPosition.x, baseHero.heroPosition.y);
             Position myPosition = new Position(heroPosition.x, heroPosition.y);
-            target.put(myPosition.getDistance(enemyPosition), baseHero);
+            if (baseHero.getHealth() > 0) target.put(myPosition.getDistance(enemyPosition), baseHero);
         }
         double minDistance = target.firstKey();
         return target.get(minDistance);
@@ -120,8 +116,16 @@ abstract public class BaseHero implements Step {
         return health;
     }
 
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
     public int getReaction() {
         return reaction;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     public Position getHeroPosition() {
