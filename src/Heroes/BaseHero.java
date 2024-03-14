@@ -132,6 +132,10 @@ abstract public class BaseHero implements Step {
         return heroPosition;
     }
 
+    public void setHealth() {
+        this.health = this.maxHealth;
+    }
+
     public static interface Step {
         void step(ArrayList<BaseHero> enemyTeam, ArrayList<BaseHero> friendTeam);
     }

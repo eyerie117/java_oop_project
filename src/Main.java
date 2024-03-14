@@ -55,7 +55,7 @@ public class Main {
                     teamRight.add(new Sniper(i, 1, getName(), 1, 150, 150, 40, 75, 3, 40, 70, 100, 10));
                     break;
                 case 3:
-                    teamRight.add(new Wizard(i, 1, getName(), 1, 100, 100, 80, 120, 2, 80, 15, 60));
+                    teamRight.add(new Wizard(i, 1, getName(), 1, 100, 100, 80, 120, 2, 80, 15, 5, 5));
                     break;
                 case 4:
                     teamRight.add(new Spearman(i, 1, getName(), 1, 170, 170, 50, 50, 1, 40, 40, 60));
@@ -64,7 +64,7 @@ public class Main {
                     teamRight.add(new Crossbowman(i, 1, getName(), 1, 140, 140, 30, 60, 3, 30, 50, 30, 15));
                     break;
                 case 6:
-                    teamRight.add(new Monk(i, 1, getName(), 1, 80, 80, 50, 100, 2, 35, 10, 70));
+                    teamRight.add(new Monk(i, 1, getName(), 1, 80, 80, 50, 100, 2, 35, 10, 5, 5));
                     break;
             }
 
@@ -79,7 +79,7 @@ public class Main {
                     teamLeft.add(new Sniper(i, 10, getName(), 1, 150, 150, 40, 75, 3, 40, 70, 100, 10));
                     break;
                 case 3:
-                    teamLeft.add(new Wizard(i, 10, getName(), 1, 100, 100, 80, 120, 2, 80, 15, 60));
+                    teamLeft.add(new Wizard(i, 10, getName(), 1, 100, 100, 80, 120, 2, 80, 15, 5, 5));
                     break;
                 case 4:
                     teamLeft.add(new Spearman(i, 10, getName(), 1, 170, 170, 50, 50, 1, 40, 40, 60));
@@ -88,7 +88,7 @@ public class Main {
                     teamLeft.add(new Crossbowman(i, 10, getName(), 1, 140, 140, 30, 60, 3, 30, 50, 30, 15));
                     break;
                 case 6:
-                    teamLeft.add(new Monk(i, 10, getName(), 1, 80, 80, 50, 100, 2, 35, 10, 70));
+                    teamLeft.add(new Monk(i, 10, getName(), 1, 80, 80, 50, 100, 2, 35, 10, 5, 5));
                     break;
             }
         }
