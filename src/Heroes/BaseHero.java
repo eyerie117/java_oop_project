@@ -48,7 +48,7 @@ abstract public class BaseHero implements Step {
     private int mind;
     private int reaction;
     private int damage;
-    Position heroPosition;
+    public Position heroPosition;
 
     public BaseHero(int x, int y, String name, int level, int health, int maxHealth, int strength, int mind, int reaction, int damage) {
         this.name = name;
@@ -77,7 +77,7 @@ abstract public class BaseHero implements Step {
     }
 
     public String getFullInfo() {
-        return String.format("\nName: %s\nType: %s\nLevel: %d\nHealth: %d\nMax Health: %d\nStrength: %d\nMind: %d\nReaction: %d\nDamage: %d\nHero Heroes.Wizard.Position: %d, %d\n",
+        return String.format("\nName: %s\nType: %s\nLevel: %d\nHealth: %d\nMax Health: %d\nStrength: %d\nMind: %d\nReaction: %d\nDamage: %d\nHero Heroes.magicians.Wizard.Position: %d, %d\n",
                 this.name, this.getClass().getSimpleName(), this.level, this.health, this.maxHealth, this.strength, this.mind, this.reaction, this.damage, this.heroPosition.getX(), this.heroPosition.getY());
     }
 
@@ -108,6 +108,7 @@ abstract public class BaseHero implements Step {
             Position myPosition = new Position(heroPosition.x, heroPosition.y);
             if (baseHero.getHealth() > 0) target.put(myPosition.getDistance(enemyPosition), baseHero);
         }
+        if (target.isEmpty()) return null;
         double minDistance = target.firstKey();
         return target.get(minDistance);
     }
@@ -136,7 +137,7 @@ abstract public class BaseHero implements Step {
         this.health = this.maxHealth;
     }
 
-    public static interface Step {
+    public interface Step {
         void step(ArrayList<BaseHero> enemyTeam, ArrayList<BaseHero> friendTeam);
     }
 }

@@ -32,6 +32,12 @@
  */
 
 import Heroes.*;
+import Heroes.magicians.Monk;
+import Heroes.magicians.Wizard;
+import Heroes.shooters.Crossbowman;
+import Heroes.shooters.Sniper;
+import Heroes.soldiers.Robber;
+import Heroes.soldiers.Spearman;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -98,7 +104,6 @@ public class Main {
         allHeroes.sort((o1, o2) -> o2.getReaction() - o1.getReaction());
 
         Scanner scanner = new Scanner(System.in);
-        boolean flag = true;
         while (true) {
             View.view();
             scanner.nextLine();
@@ -112,12 +117,10 @@ public class Main {
             }
             if (teamRightHealth == 0) {
                 System.out.println("teamLeft одержали победу!");
-                flag = false;
                 break;
             }
             if (teamLeftHealth == 0) {
                 System.out.println("teamRight одержали победу!");
-                flag = false;
                 break;
             }
             for (BaseHero allHero : allHeroes) {

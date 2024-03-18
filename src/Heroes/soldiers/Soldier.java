@@ -1,29 +1,19 @@
-package Heroes;
+package Heroes.soldiers;
+
+import Heroes.BaseHero;
+import Heroes.Position;
 
 import java.util.ArrayList;
 
-public class Robber extends BaseHero {
-    private int ability;
-    private int luck;
-
-    public Robber(int x, int y, String name, int level, int health, int maxHealth, int strength, int mind, int reaction, int damage, int ability, int luck) {
+abstract class Soldier extends BaseHero {
+    public Soldier(int x, int y, String name, int level, int health, int maxHealth, int strength, int mind, int reaction, int damage) {
         super(x, y, name, level, health, maxHealth, strength, mind, reaction, damage);
-        this.ability = ability;
-        this.luck = luck;
-    }
-
-    public Robber(int x, int y, String name) {
-        super(x, y, name);
-    }
-
-    @Override
-    public String getFullInfo() {
-        return String.format("%sAbility: %d\nLuck: %d\n",super.getFullInfo(), this.ability, this.luck);
     }
 
     @Override
     public void step(ArrayList<BaseHero> enemyTeam, ArrayList<BaseHero> friendTeam) {
-        if (!isDead(Robber.this)) {
+        if (!isDead(Soldier.this)) {
+            if (getNearestEnemy(enemyTeam) == null) return;
             BaseHero enemy = this.getNearestEnemy(enemyTeam);
             if (heroPosition.getDistance(enemy.heroPosition) < 2 && enemy.getHealth() > 0) {
                 attack(enemy);
@@ -42,9 +32,5 @@ public class Robber extends BaseHero {
             }
             this.heroPosition = newPosition;
         }
-    }
-
-    public String getInfo() {
-        return "Разбойник";
     }
 }
